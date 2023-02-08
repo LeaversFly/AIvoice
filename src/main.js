@@ -1,14 +1,14 @@
 import { handle } from './utils/proxy.js'
-import { createOptions, setParams, bindData, getData } from './utils/index.js'
+import { createOptions, setParams, bindData, getVoice, forbidCheck } from './utils/index.js'
 import css from './assets/style/index.css'
 
 // 原始数据
-let data = {
+export let data = {
     'text': '',
     'speaker': '派蒙',
-    'noise': '0.66',
+    'noise': '0.6',
     'noisew': '0.8',
-    'length': '1.2',
+    'length': '1',
     'format': 'wav'
 }
 
@@ -25,7 +25,10 @@ setParams()
 // 绑定数据
 bindData()
 
+// 禁用控制台
+forbidCheck()
+
 // 绑定生成语音事件
 document.querySelector('.produce').addEventListener('click', () => {
-    getData()
+    getVoice()
 })

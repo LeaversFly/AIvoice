@@ -7,7 +7,7 @@ module.exports = {
     entry: './src/main.js',
     // 输出
     output: {
-        filename: 'index.js',
+        filename: './assets/index.js',
         path: resolve(__dirname, 'dist'),
         clean: true
     },
@@ -16,7 +16,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
             },
             {
                 test: /\.(jpg|png|gif)$/,
