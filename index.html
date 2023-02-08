@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" href="logo.png">
+    <title>文本转原神语音</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="nav"><span class="title">文本转原神语音</span> <span class="question"><a
+                    href="https://space.bilibili.com/174976202?spm_id_from=333.1007.0.0" target="_blank">反馈</a></span>
+        </div>
+    </div>
+    <div class="container"><textarea rows="15" class="input-box" value="" placeholder="请输入文本..."></textarea>
+        <div class="options">
+            <div class="option"><span class="tag">角色</span> <select class="selector"></select></div>
+            <div class="option"><span class="tag">感情</span> <input type="range" min="0" max="1.5" step="0.1" value="0.6"
+                    class="slide" name="noise"> <span class="param tag"></span></div>
+            <div class="option"><span class="tag">音素长度</span> <input type="range" min="0" max="1.5" step="0.1"
+                    value="0.8" class="slide" name="noisew"> <span class="param tag"></span></div>
+            <div class="option"><span class="tag">语速</span> <input type="range" min="0.5" max="2" step="0.1" value="1"
+                    class="slide" name="length"> <span class="param tag"></span></div>
+            <div class="option"><span class="tag">格式</span> <select class="selector">
+                    <option value="wav">wav</option>
+                    <option value="mp3">mp3</option>
+                </select></div>
+        </div>
+        <div class="btns"><button class="produce">生成</button><audio controls class="player">
+                <source src="">
+            </audio></div>
+        <div class="intro">
+            <div class="intro-item">参数说明</div>
+            <div class="info">
+                <ul>
+                    <li><span>输入框文本：</span>只能合成中文字符和部分标点符号，不能合成英语字符和数字，对于这些字符会直接跳过，请转换为发音接近的汉字</li>
+                    <li><span>角色：</span>生成对应角色的语音</li>
+                    <li><span>感情：</span>控制感情变化程度，默认为0.6</li>
+                    <li><span>音素长度：</span>控制音节发音长度变化程度，默认为0.8</li>
+                    <li><span>语速：</span>默认为1</li>
+                    <li><span>生成语音格式：</span>原有接口以WAV格式合成语音，在MP3格式合成语音的情况下，涉及到音频格式转换合成速度会变慢，建议选择WAV格式</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer"><span class="source">AI语音：<a
+                href="https://space.bilibili.com/25828081?spm_id_from=333.337.search-card.all.click"
+                target="_blank">小虫哥_</a>、 <a href="https://space.bilibili.com/163056936/?spm_id_from=333.999.0.0"
+                target="_blank">Stardust_减</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 训练集：<a
+                href="https://github.com/w4123/GenshinVoice" target="_blank">https://github.com/w4123/GenshinVoice</a>、
+            <a href="https://space.bilibili.com/25828081?spm_id_from=333.337.search-card.all.click" target="_blank">小虫哥_
+            </a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="https://beian.miit.gov.cn"
+                target="_blank">赣ICP备2022008365号-1</a></span></div>
+</body>
+
+</html>
