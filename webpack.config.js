@@ -1,6 +1,7 @@
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
     // 入口
@@ -19,7 +20,7 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader']
             },
             {
-                test: /\.(jpg|png|gif)$/,
+                test: /\.(png)$/,
                 generator: {
                     filename: 'assets/[name][ext]'
                 }
@@ -31,7 +32,6 @@ module.exports = {
                 }
             }
         ]
-
     },
     // 插件
     plugins: [
@@ -40,9 +40,11 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: 'assets/index.css'
-        })
-
+        }),
+        // css压缩
+        new CssMinimizerPlugin(),
     ],
+    // 开发服务器
     devServer: {
         contentBase: resolve(__dirname, 'dist'),
         compress: true,
