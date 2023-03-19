@@ -44,11 +44,13 @@ module.exports = {
         // css压缩
         new CssMinimizerPlugin(),
     ],
+    mode: 'development',
     // 开发服务器
     devServer: {
-        contentBase: resolve(__dirname, 'dist'),
-        compress: true,
+        // contentBase: resolve(__dirname, 'dist'),
+        // compress: true,
+        open: true,
+        hot: true,
         port: 9000
-    },
-    mode: 'production'
+    }
 }

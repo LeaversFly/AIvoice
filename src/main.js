@@ -1,5 +1,6 @@
 import { handle } from './utils/proxy.js'
 import { createOptions, setParams, bindData, getVoice, forbidCheck } from './utils/index.js'
+import dialog from './utils/dialog'
 import css from './assets/style/index.css'
 
 // 原始数据
@@ -27,6 +28,9 @@ bindData()
 
 // 禁用控制台
 forbidCheck()
+
+// 点击支持一下弹出对话框
+dialog()
 
 // 绑定生成语音事件
 document.querySelector('.produce').addEventListener('click', () => {
