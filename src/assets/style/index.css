@@ -55,6 +55,11 @@ body {
     cursor: pointer;
 }
 
+.QRcode {
+    width: 400px;
+    height: 400px;
+}
+
 dialog {
     cursor: auto;
     z-index: 999;
