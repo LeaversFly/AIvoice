@@ -30,6 +30,12 @@ module.exports = {
                 generator: {
                     filename: 'assets/[name][ext]'
                 }
+            },
+            {
+                test: /\.json$/,
+                generator: {
+                    filename: 'assets/[name][ext]'
+                }
             }
         ]
     },
@@ -44,10 +50,9 @@ module.exports = {
         // css压缩
         new CssMinimizerPlugin(),
     ],
-    mode: 'development',
+    mode: 'production',
     // 开发服务器
     devServer: {
-        // contentBase: resolve(__dirname, 'dist'),
         // compress: true,
         open: true,
         hot: true,
