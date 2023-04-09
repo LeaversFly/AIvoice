@@ -86,9 +86,9 @@ dialog form {
 
 dialog form button {
     background-color: #efefef;
-    border-radius: 18px;
+    border-radius: 8px;
     color: #787383;
-    padding: 3px 4px;
+    padding: 6px;
     border: none;
 }
 
