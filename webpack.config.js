@@ -53,7 +53,7 @@ module.exports = {
     mode: 'production',
     // 开发服务器
     devServer: {
-        // compress: true,
+        compress: true,
         open: true,
         hot: true,
         port: 9000
