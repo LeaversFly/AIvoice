@@ -37,7 +37,10 @@ export const bindData = () => {
         item.addEventListener('input', e => data.text = e.target.value)
     });
     document.querySelectorAll('.slide').forEach(item => {
-        item.addEventListener('input', e => data[e.target.name] = e.target.value)
+        item.addEventListener('input', e => {
+            data[e.target.name] = e.target.value
+            e.target.parentNode.querySelector(".param.tag").innerHTML = e.target.value;
+        })
     });
 }
 

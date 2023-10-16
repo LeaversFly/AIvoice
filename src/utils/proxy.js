@@ -8,7 +8,8 @@ export const handle = {
     },
     set: function (target, key, value, receiver) {
         // console.log('设置值：' + value)
+        Reflect.set(...arguments)
         setParams()
-        return Reflect.set(...arguments)
+        return true
     }
 }
