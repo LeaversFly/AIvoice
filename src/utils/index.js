@@ -104,7 +104,7 @@ export const defineDownloadButton = (url, name) => {
         document.querySelector('button.produce').click();
         const downloadLink = document.createElement('a');
         // {角色}：{文本}.{后缀}。文本先替换换行为空格，然后取前10个字符。
-        downloadLink.download=document.querySelectorAll('select.selector')[0].selectedOptions[0].value+'：'+document.querySelector('textarea.input-box').value.replaceAll('\n', ' ').slice(0, 10)+'.'+document.querySelectorAll('select.selector')[1].selectedOptions[0].value;
+        downloadLink.download=document.querySelectorAll('select.selector')[0].selectedOptions[0].value+'：'+document.querySelector('textarea.input-box').value.replaceAll('\n', ' ').replaceAll('\r', ' ').slice(0, 10)+'.'+document.querySelectorAll('select.selector')[1].selectedOptions[0].value;
         // 还没点生成、点了还没返回或者已经返回了都不会重复请求。还没生成点下载会先生成。
         downloadLink.href=document.querySelector('audio.player').src;
         downloadLink.click();
