@@ -32,7 +32,12 @@
     </div>
     <div class="container"><textarea rows="15" class="input-box" value="" placeholder="请输入文本..."></textarea>
         <div class="options">
-            <div class="option"><span class="tag">角色</span> <select class="selector"></select></div>
+            <div class="option">
+                <span class="tag">角色</span>
+                <select class="selector"></select>
+                <input placeholder="必须和列表里的名字完全相同" size="12" id="character-search-box">
+                <button style="justify-content: center; display: block; margin: 0px auto; width: 15%;">搜索</button>
+            </div>
             <div class="option"><span class="tag">感情</span> <input type="range" min="0" max="1.5" step="0.1" value="0.6"
                     class="slide" name="noise"> <span class="param tag"></span></div>
             <div class="option"><span class="tag">音素长度</span> <input type="range" min="0" max="1.5" step="0.1"
@@ -49,6 +54,7 @@
             <audio controls class="player">
                 <source src="">
             </audio>
+            <button id="download-button" style="background-color: rgb(0, 134, 209); border: medium; border-radius: 8px; color: rgb(255, 255, 255); cursor: pointer; font-family: SmileySans; font-size: 1rem; height: 100%; margin-right: 20px; transition: 0.4s; width: 10%;">下载</button>
         </div>
         <div class="intro">
             <div class="intro-item">参数说明</div>
