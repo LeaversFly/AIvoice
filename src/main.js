@@ -1,5 +1,5 @@
 import { handle } from './utils/proxy.js'
-import { createOptions, setParams, bindData, getVoice, forbidCheck } from './utils/index.js'
+import { createOptions, setParams, bindData, getVoice, forbidCheck, defineSearchButton, defineDownloadButton} from './utils/index.js'
 import dialog from './utils/dialog'
 import css from './assets/style/index.css'
 
@@ -36,3 +36,9 @@ dialog()
 document.querySelector('.produce').addEventListener('click', () => {
     getVoice()
 })
+
+// 搜索按钮定义
+defineSearchButton()
+
+// 下载按钮定义
+defineDownloadButton()

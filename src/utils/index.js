@@ -83,3 +83,31 @@ export const forbidCheck = () => {
     }
     check()
 }
+
+// 搜索按钮定义
+export const defineSearchButton = () => {
+    // 先设置value，然后触发 change event来更改全局变量（为什么要用一个全局变量而不是请求的时候读取几个框里的内容啊）
+    const searchButton = document.getElementById('button');
+    searchButton.addEventListener("click", function() {
+        const characterSelect = document.querySelectorAll('select.selector')[0];
+        characterSelect.value = document.getElementById('characterSearchBox').value;
+        const changeEvent = new Event("change");
+        characterSelect.dispatchEvent(changeEvent);
+    })
+}
+
+// 方便下载和自动命名
+export const defineDownloadButton = (url, name) => {
+    const button = document.getElementById("download-button");
+    button.addEventListener("click", function() {
+        // 如果没点过生成会自动生成并下载
+        document.querySelector('button.produce').click();
+        const downloadLink = document.createElement('a');
+        // {角色}：{文本}.{后缀}。文本先替换换行为空格，然后取前10个字符。
+        downloadLink.download=document.querySelectorAll('select.selector')[0].selectedOptions[0].value+'：'+document.querySelector('textarea.input-box').value.replaceAll('\n', ' ').slice(0, 10)+'.'+document.querySelectorAll('select.selector')[1].selectedOptions[0].value;
+        // 还没点生成、点了还没返回或者已经返回了都不会重复请求。还没生成点下载会先生成。
+        downloadLink.href=document.querySelector('audio.player').src;
+        downloadLink.click();
+    });
+    document.querySelector('div.btns').appendChild(button);
+}
