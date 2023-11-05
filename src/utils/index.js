@@ -48,13 +48,13 @@ export const bindData = () => {
 
 // 填入数据
 export const getVoice = () => {
-    const { text, speaker, noise, noisew, length, format } = data
+    const { text, speaker, sdp, noise, noisew, length, format, language} = data
     if (text === '') {
         alert('请输入文本!')
     }
     else {
         const node = document.getElementsByTagName('audio')[0]
-        node.setAttribute('src', `https://genshinvoice.top/api?speaker=${speaker}&text=${text}&format=${format}&length=${1 / length}&noise=${noise}&noisew=${noisew}`)
+        node.setAttribute('src', `https://genshinvoice.top/api?speaker=${speaker}&text=${text}&format=${format}&length=${1 / length}&sdp=${sdp}&language=${language}&noise=${noise}&noisew=${noisew}`)
     }
 }
 
