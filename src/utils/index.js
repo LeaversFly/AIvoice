@@ -1,7 +1,7 @@
 import { data } from "../main"
 // 引入角色名
 import roles from '../assets/roles.json'
-const languages = {"ZH", "EN", "JP"}
+const languages = {"ZH", "EN", "JP", "mix"}
 // 设置角色语音选项
 export const createOptions = () => {
     const character = document.querySelector('.character')
