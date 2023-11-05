@@ -16,12 +16,15 @@ export const setParams = () => {
     for (let i = 0; i < nodeList.length; i++) {
         switch (i) {
             case 0:
-                nodeList[i].innerHTML = data['noise']
+                nodeList[i].innerHTML = data['sdp']
                 break
             case 1:
-                nodeList[i].innerHTML = data['noisew']
+                nodeList[i].innerHTML = data['noise']
                 break
             case 2:
+                nodeList[i].innerHTML = data['noisew']
+                break
+            case 3:
                 nodeList[i].innerHTML = data['length']
                 break
         }
