@@ -33,7 +33,12 @@ export const setParams = () => {
 
 // 绑定事件，数据回流时重新展示
 export const bindData = () => {
-    document.querySelectorAll('.selector').forEach(item => {
+    document.querySelectorAll('.character').forEach(item => {
+        item.addEventListener('change', e => {
+            e.target.length === 2 ? data.format = e.target.value : data.speaker = e.target.value
+        })
+    });
+    document.querySelectorAll('.language').forEach(item => {
         item.addEventListener('change', e => {
             e.target.length === 2 ? data.format = e.target.value : data.speaker = e.target.value
         })
