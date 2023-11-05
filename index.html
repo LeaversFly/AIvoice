@@ -15,12 +15,12 @@
             <span class="title">文本转原神语音</span>
             <span class="question">
                 <span class="feedback">
-                    <a href="https://space.bilibili.com/174976202?spm_id_from=333.1007.0.0" target="_blank">反馈</a>
+                    <a href="https://space.bilibili.com/163056936" target="_blank">反馈</a>
                 </span>
                 <span class="support">
-                    <span>支持一下</span>
+                    <span>联系我</span>
                     <dialog>
-                        <div>微信支付</div>
+                        <div>QQ群二维码</div>
                         <img src="./assets/QRcode.png" alt="加载失败" class="QRcode">
                         <form method="dialog">
                             <button type="submit" value="yes">关闭</button>
@@ -30,21 +30,34 @@
             </span>
         </div>
     </div>
-    <div class="container"><textarea rows="15" class="input-box" value="" placeholder="请输入文本..."></textarea>
+    <div class="container"><textarea rows="15" class="input-box" value="" placeholder="如果你选择语言为\'mix\'，必须按照格式输入，否则报错:
+                         格式举例(zh是中文，jp是日语，不区分大小写；说话人举例:gongzi):
+                         [说话人1]<zh>你好，こんにちは！ <jp>こんにちは，世界。
+                         [说话人2]<zh>你好吗？<jp>元気ですか？
+                         [说话人3]<zh>谢谢。<jp>どういたしまして。
+                         ...
+                    另外，所有的语言选项都可以用'|'分割长段实现分句生成。
+                    "></textarea>
         <div class="options">
             <div class="option">
                 <span class="tag">角色</span>
-                <select class="selector"></select>
+                <select class="character"></select>
                 <input placeholder="必须和列表里的名字完全相同" size="12" id="character-search-box">
                 <button style="justify-content: center; display: block; margin: 0px auto; width: 15%;">搜索</button>
             </div>
-            <div class="option"><span class="tag">感情</span> <input type="range" min="0" max="1.5" step="0.1" value="0.6"
+            <div class="option"><span class="tag">SDP Ratio</span> <input type="range" min="0.0" max="1.0" step="0.1" value="0.4"
+                    class="slide" name="sdp"> <span class="param tag"></span></div>
+            <div class="option"><span class="tag">Noise</span> <input type="range" min="0" max="1.5" step="0.1" value="0.6"
                     class="slide" name="noise"> <span class="param tag"></span></div>
             <div class="option"><span class="tag">音素长度</span> <input type="range" min="0" max="1.5" step="0.1"
-                    value="0.8" class="slide" name="noisew"> <span class="param tag"></span></div>
-            <div class="option"><span class="tag">语速</span> <input type="range" min="0.5" max="2" step="0.1" value="1"
+                    value="0.8" class="noisew" name="noisew"> <span class="param tag"></span></div>
+            <div class="option"><span class="tag">Length</span> <input type="range" min="0.5" max="2" step="0.1" value="1"
                     class="slide" name="length"> <span class="param tag"></span></div>
-            <div class="option"><span class="tag">格式</span> <select class="selector">
+            <div class="option">
+                <span class="tag">Language</span>
+                <select class="language"></select>
+            </div>
+            <div class="option"><span class="tag">Format</span> <select class="selector">
                     <option value="wav">wav</option>
                     <option value="mp3">mp3</option>
                 </select></div>
