@@ -3,41 +3,41 @@ import { data } from "../main"
 
 // 设置选项与拖动条
 export const createOptions = () => {
+    const sliderPorp = ['min', 'max', 'step', 'value']
     for (let key in params) {
         const container = document.querySelector('.' + key)
+        // 拖动条
         if (typeof params[key][0] === 'number') {
-            container.setAttribute('min', params[key][0])
-            container.setAttribute('max', params[key][1])
-            container.setAttribute('step', params[key][2])
-            container.setAttribute('value', params[key][3])
+            sliderPorp.forEach((item, index) => container.setAttribute(item, params[key][index]))
             container.parentNode.querySelector('.param').innerHTML = params[key][3]
-        } else {
-            if (key !== 'text') {
-                params[key].forEach(item => container.add(new Option(item, item)))
-            }
+        } else if (key !== 'text') {
+            // 选择器
+            params[key].forEach(item => container.add(new Option(item, item)))
         }
     }
 }
 
-// 绑定事件，数据回流时重新展示
+// 绑定数据更新事件
 export const bindData = () => {
     for (let key in data) {
         const container = document.querySelector('.' + key)
+        // 文本
         if (key === 'text') {
             document.querySelector('.input-box').addEventListener('input', e => {
                 data[key] = e.target.value
             })
+        } else if (container.className.includes('selector')) {
+            // 选择器
+            container.addEventListener('change', e => {
+                data[key] = e.target.value
+            })
         } else {
-            if (container.className.includes('selector')) {
-                container.addEventListener('change', e => {
-                    data[key] = e.target.value
-                })
-            } else {
-                container.addEventListener('input', e => {
-                    data[key] = e.target.value
-                    container.parentNode.querySelector('.param').innerHTML = data[key]
-                })
-            }
+            // 拖动条
+            container.addEventListener('input', e => {
+                data[key] = e.target.value
+                // 更新拖动条后的数值
+                container.parentNode.querySelector('.param').innerHTML = data[key]
+            })
         }
     }
 }
@@ -49,13 +49,13 @@ export const getVoice = () => {
     } else {
         const node = document.getElementsByTagName('audio')[0]
         let url = 'https://genshinvoice.top/api?'
+        // 根据参数拼接url字符串
         for (let key in data) {
-            if (key === 'length') {
-                url += key + '=' + 1 / data[key] + '&'
-            } else {
+            // 语速要特殊处理
+            key === 'length' ? url += key + '=' + 1 / data[key] + '&' :
                 url += key + '=' + data[key] + '&'
-            }
         }
+        // 删掉多余的&
         url = url.slice(0, -1)
         node.setAttribute('src', url)
     }
