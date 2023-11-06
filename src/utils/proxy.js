@@ -7,9 +7,9 @@ export const handle = {
         return Reflect.get(...arguments)
     },
     set: function (target, key, value, receiver) {
+        // console.log('获取属性：' + key)
         // console.log('设置值：' + value)
         Reflect.set(...arguments)
-        setParams()
         return true
     }
 }

@@ -1,58 +1,63 @@
+import { params } from "../config/params"
 import { data } from "../main"
-// 引入角色名
-import roles from '../assets/roles.json'
 
-// 设置角色语音选项
+// 设置选项与拖动条
 export const createOptions = () => {
-    const selector = document.querySelector('.selector')
-    roles.forEach((item) => selector.add(new Option(item, item)))
-}
-
-// 修改显示参数
-export const setParams = () => {
-    let nodeList = document.querySelectorAll('.param')
-    for (let i = 0; i < nodeList.length; i++) {
-        switch (i) {
-            case 0:
-                nodeList[i].innerHTML = data['noise']
-                break
-            case 1:
-                nodeList[i].innerHTML = data['noisew']
-                break
-            case 2:
-                nodeList[i].innerHTML = data['length']
-                break
+    for (let key in params) {
+        const container = document.querySelector('.' + key)
+        if (typeof params[key][0] === 'number') {
+            container.setAttribute('min', params[key][0])
+            container.setAttribute('max', params[key][1])
+            container.setAttribute('step', params[key][2])
+            container.setAttribute('value', params[key][3])
+            container.parentNode.querySelector('.param').innerHTML = params[key][3]
+        } else {
+            if (key !== 'text') {
+                params[key].forEach(item => container.add(new Option(item, item)))
+            }
         }
     }
 }
 
 // 绑定事件，数据回流时重新展示
 export const bindData = () => {
-    document.querySelectorAll('.selector').forEach(item => {
-        item.addEventListener('change', e => {
-            e.target.length === 2 ? data.format = e.target.value : data.speaker = e.target.value
-        })
-    });
-    document.querySelectorAll('.input-box').forEach(item => {
-        item.addEventListener('input', e => data.text = e.target.value)
-    });
-    document.querySelectorAll('.slide').forEach(item => {
-        item.addEventListener('input', e => {
-            data[e.target.name] = e.target.value
-            e.target.parentNode.querySelector(".param.tag").innerHTML = e.target.value;
-        })
-    });
+    for (let key in data) {
+        const container = document.querySelector('.' + key)
+        if (key === 'text') {
+            document.querySelector('.input-box').addEventListener('input', e => {
+                data[key] = e.target.value
+            })
+        } else {
+            if (container.className.includes('selector')) {
+                container.addEventListener('change', e => {
+                    data[key] = e.target.value
+                })
+            } else {
+                container.addEventListener('input', e => {
+                    data[key] = e.target.value
+                    container.parentNode.querySelector('.param').innerHTML = data[key]
+                })
+            }
+        }
+    }
 }
 
 // 填入数据
 export const getVoice = () => {
-    const { text, speaker, noise, noisew, length, format } = data
-    if (text === '') {
+    if (data.text === '') {
         alert('请输入文本!')
-    }
-    else {
+    } else {
         const node = document.getElementsByTagName('audio')[0]
-        node.setAttribute('src', `https://genshinvoice.top/api?speaker=${speaker}&text=${text}&format=${format}&length=${1 / length}&noise=${noise}&noisew=${noisew}`)
+        let url = 'https://genshinvoice.top/api?'
+        for (let key in data) {
+            if (key === 'length') {
+                url += key + '=' + 1 / data[key] + '&'
+            } else {
+                url += key + '=' + data[key] + '&'
+            }
+        }
+        url = url.slice(0, -1)
+        node.setAttribute('src', url)
     }
 }
 
@@ -84,29 +89,17 @@ export const forbidCheck = () => {
     check()
 }
 
-// 搜索按钮定义
-export const defineSearchButton = () => {
-    // 先设置value，然后触发 change event来更改全局变量（为什么要用一个全局变量而不是请求的时候读取几个框里的内容啊）
-    const searchButton = document.getElementById('button');
-    searchButton.addEventListener("click", function() {
-        const characterSelect = document.querySelectorAll('select.selector')[0];
-        characterSelect.value = document.getElementById('characterSearchBox').value;
-        const changeEvent = new Event("change");
-        characterSelect.dispatchEvent(changeEvent);
-    })
-}
-
 // 方便下载和自动命名
 export const defineDownloadButton = (url, name) => {
     const button = document.getElementById("download-button");
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
         // 如果没点过生成会自动生成并下载
         document.querySelector('button.produce').click();
         const downloadLink = document.createElement('a');
         // {角色}：{文本}.{后缀}。文本先替换换行为空格，然后取前10个字符。
-        downloadLink.download=document.querySelectorAll('select.selector')[0].selectedOptions[0].value+'：'+document.querySelector('textarea.input-box').value.replaceAll('\n', ' ').replaceAll('\r', ' ').slice(0, 10)+'.'+document.querySelectorAll('select.selector')[1].selectedOptions[0].value;
+        downloadLink.download = document.querySelectorAll('select.selector')[0].selectedOptions[0].value + '：' + document.querySelector('textarea.input-box').value.replaceAll('\n', ' ').replaceAll('\r', ' ').slice(0, 10) + '.' + document.querySelectorAll('select.selector')[1].selectedOptions[0].value;
         // 还没点生成、点了还没返回或者已经返回了都不会重复请求。还没生成点下载会先生成。
-        downloadLink.href=document.querySelector('audio.player').src;
+        downloadLink.href = document.querySelector('audio.player').src;
         downloadLink.click();
     });
     document.querySelector('div.btns').appendChild(button);

@@ -126,7 +126,6 @@ dialog form button {
     border-radius: 12px;
     font-size: 1rem;
     transition: .4s;
-    background: url(../images/statement.png);
     opacity: 0.8;
 }
 
@@ -154,12 +153,6 @@ dialog form button {
     border-radius: 8px;
     margin: 2px;
     background-color: white;
-}
-
-.btns {
-    display: flex;
-    height: 42px;
-    align-items: center;
 }
 
 .input-key {
@@ -208,8 +201,15 @@ dialog form button {
     border-radius: 0 4px 4px 0;
 }
 
-.produce {
-    height: 100%;
+
+.btn-group {
+    margin: 6px 0;
+    height: 42px;
+}
+
+.produce,
+#download-button {
+    height: 42px;
     width: 10%;
     background-color: #0086d1;
     color: white;
@@ -222,14 +222,24 @@ dialog form button {
     font-family: SmileySans;
 }
 
-.produce:hover {
+#download-button {
+    background-color: #28a745;
+}
+
+.produce:hover,
+#download-button:hover {
     transition: .4s;
     background-color: #066ba5;
 }
 
+#download-button:hover {
+    background-color: #218838;
+}
+
+
 .player {
     height: 42px;
-    width: 36%;
+    width: 100%;
 }
 
 .intro {
@@ -290,13 +300,6 @@ a:hover {
         width: 100%;
     }
 
-    .btns {
-        justify-content: space-between;
-        flex-direction: column;
-        width: 100%;
-        height: 120px;
-    }
-
     .input-key {
         width: 100%;
         resize: none;
@@ -317,7 +320,7 @@ a:hover {
 
     .produce,
     .player {
-        height: 50px;
+        height: 100px;
         width: 100%;
     }
 
